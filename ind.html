@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/style.css">
+    <title>Test CARS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .total-score {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Test CARS</h1>
+        <form id="cars-form">
+            <label for="interviewee-name">Nombre del entrevistado:</label>
+            <input type="text" id="interviewee-name" name="interviewee-name" required><br><br>
+            <label for="child-name">Nombre del niño:</label>
+            <input type="text" id="child-name" name="child-name" required><br><br>
+            <label for="child-age">Edad del niño:</label>
+            <input type="text" id="child-age" name="child-age" required><br><br>
+            <label class="statement">1. Relación con las personas:</label>
+            <ul class='likert'>
+                <li>
+                    <input type="radio" name="q1" value="1">
+                    <label>Relaciones sociales típicas para la edad.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q1" value="2">
+                    <label>Se relaciona de manera limitada, pero apropiada, con las personas.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q1" value="3">
+                    <label>Presenta dificultades significativas en las relaciones sociales.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q1" value="4">
+                    <label>Ausencia de relaciones sociales.</label>
+                </li>
+            </ul>
+            <label class="statement">2. Imitación</label>
+            <ul class='likert'>
+                <li>
+                    <input type="radio" name="q2" value="1">
+                    <label>Imita adecuadamente acciones.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q2" value="2">
+                    <label>Imita con dificultad.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q2" value="3">
+                    <label>Imita mínimamente o no imita.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q2" value="4">
+                    <label>Ausencia de imitación.</label>
+                </li>
+            </ul>
+            <label class="statement">3. Respuesta emocional</label>
+            <ul class='likert'>
+                <li>
+                    <input type="radio" name="q3" value="1">
+                    <label>Respuesta emocional apropiada.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q3" value="2">
+                    <label>Respuesta emocional limitada o inusual.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q3" value="3">
+                    <label>Respuesta emocional inapropiada o inusual.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q3" value="4">
+                    <label>Ausencia de respuesta emocional.</label>
+                </li>
+            </ul>
+            <label class="statement">4. Uso del cuerpo</label>
+            <ul class='likert'>
+                <li>
+                    <input type="radio" name="q4" value="1">
+                    <label>Uso típico del cuerpo y movimientos.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q4" value="2">
+                    <label>Movimientos o posturas inusuales.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q4" value="3">
+                    <label>Movimientos o posturas repetitivas.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q4" value="4">
+                    <label>Movimientos estereotipados o ausencia de movimientos.</label>
+                </li>
+            </ul>
+            <label class="statement">5. Intereses</label>
+            <ul class='likert'>
+                <li>
+                    <input type="radio" name="q5" value="1">
+                    <label>Intereses típicos para la edad.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q5" value="2">
+                    <label>Intereses limitados o inusuales.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q5" value="3">
+                    <label>Intereses muy limitados o focalizados.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q5" value="4">
+                    <label>Obsesión con un interés específico.</label>
+                </li>
+            </ul>
+            <label class="statement">6. Adaptación al cambio</label>
+            <ul class='likert'>
+                <li>
+                    <input type="radio" name="q6" value="1">
+                    <label>Capacidad adecuada para adaptarse a cambios.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q6" value="2">
+                    <label>Dificultades moderadas para adaptarse a cambios.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q6" value="3">
+                    <label>Dificultades significativas para adaptarse a cambios.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q6" value="4">
+                    <label>Resistencia extrema a cambios.</label>
+                </li>
+            </ul>
+            <label class="statement">7. Respuesta auditiva</label>
+            <ul class='likert'>
+                <li>
+                    <input type="radio" name="q7" value="1">
+                    <label>Responde adecuadamente a estímulos auditivos.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q7" value="2">
+                    <label>Hipersensibilidad o hiposensibilidad a estímulos auditivos.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q7" value="3">
+                    <label>Respuestas inusuales o inapropiadas a estímulos auditivos.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q7" value="4">
+                    <label>Ausencia de respuesta a estímulos auditivos.</label>
+                </li>
+            </ul>
+            <label class="statement">8. Uso de objetos</label>
+            <ul class='likert'>
+                <li>
+                    <input type="radio" name="q8" value="1">
+                    <label>Utiliza objetos de manera típica para la edad.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q8" value="2">
+                    <label>Uso limitado o inusual de objetos.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q8" value="3">
+                    <label>Utiliza objetos de manera repetitiva o inapropiada.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q8" value="4">
+                    <label>No utiliza objetos de manera funcional.</label>
+                </li>
+            </ul>
+            <label class="statement">9. Comprensión verbal</label>
+            <ul class='likert'>
+                <li>
+                    <input type="radio" name="q9" value="1">
+                    <label>Comprende instrucciones verbales apropiadas para su nivel de desarrollo.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q9" value="2">
+                    <label>Dificultades moderadas para comprender instrucciones verbales.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q9" value="3">
+                    <label>Dificultades significativas para comprender instrucciones verbales.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q9" value="4">
+                    <label>Ausencia de comprensión verbal.</label>
+                </li>
+            </ul>
+            <label class="statement">10. Respuesta visual</label>
+            <ul class='likert'>
+                <li>
+                    <input type="radio" name="q10" value="1">
+                    <label>Responde adecuadamente a estímulos visuales.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q10" value="2">
+                    <label>Hipersensibilidad o hiposensibilidad a estímulos visuales.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q10" value="3">
+                    <label>Respuestas inusuales o inapropiadas a estímulos visuales.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q10" value="4">
+                    <label>Ausencia de respuesta a estímulos visuales.</label>
+                </li>
+            </ul>
+            <label class="statement">11. Nivel de actividad</label>
+            <ul class='likert'>
+                <li>
+                    <input type="radio" name="q11" value="1">
+                    <label>Nivel de actividad típico para la edad.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q11" value="2">
+                    <label>Actividad excesiva o inusualmente baja.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q11" value="3">
+                    <label>Hiperactividad o hiporreactividad.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q11" value="4">
+                    <label>Ausencia de actividad motora.</label>
+                </li>
+            </ul>
+            <label class="statement">12. Nivel de ansiedad</label>
+            <ul class='likert'>
+                <li>
+                    <input type="radio" name="q12" value="1">
+                    <label>Ansiedad típica para la edad.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q12" value="2">
+                    <label>Ansiedad moderada.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q12" value="3">
+                    <label>Ansiedad significativa.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q12" value="4">
+                    <label>Ansiedad extrema o ausencia de ansiedad.</label>
+                </li>
+            </ul>
+            <label class="statement">13. Respuesta a la gente</label>
+            <ul class='likert'>
+                <li>
+                    <input type="radio" name="q13" value="1">
+                    <label>Interacción social adecuada.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q13" value="2">
+                    <label>Respuesta limitada o inusual a personas.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q13" value="3">
+                    <label>Respuestas inusuales o inapropiadas a personas.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q13" value="4">
+                    <label>Ausencia de respuesta a personas.</label>
+                </li>
+            </ul>
+            <label class="statement">14. Inteligencia general</label>
+            <ul class='likert'>
+                <li>
+                    <input type="radio" name="q14" value="1">
+                    <label>Funcionamiento intelectual típico para la edad.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q14" value="2">
+                    <label>Rendimiento intelectual por debajo de lo esperado.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q14" value="3">
+                    <label>Discapacidad intelectual leve o moderada.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q14" value="4">
+                    <label>Discapacidad intelectual grave o profunda.</label>
+                </li>
+            </ul>
+            <label class="statement">15. Respuesta verbal</label>
+            <ul class='likert'>
+                <li>
+                    <input type="radio" name="q15" value="1">
+                    <label>Habla de manera típica para la edad.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q15" value="2">
+                    <label>Habla limitada o inusual.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q15" value="3">
+                    <label>Habla mínima o ausencia de habla.</label>
+                </li>
+                <li>
+                    <input type="radio" name="q15" value="4">
+                    <label>Habla inapropiada o estereotipada.</label>
+                </li>
+            </ul> 
+        </form>
+        <input type="button" value="Calcular puntuación total" onclick="calculateScore()">
+<div id="total-score" class="total-score"></div>
+
+        </form>
+        <div id="total-score" class="total-score"></div>
+        <p>Los datos se han guardado correctamente en Google Sheets. Puedes acceder a la hoja de cálculo <a
+                href="https://docs.google.com/spreadsheets/d/17fU3QNblwJ6ri8wA0j1wdbugd-w5SS0H_FJ8ZqQuj5E/edit#gid=0"
+                target="_blank">aquí</a>.</p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    document.querySelector('input[type=button]').addEventListener('click', calculateScore);
+});
+
+
+        function calculateScore() {
+    let score = 0;
+    const form = document.getElementById("cars-form");
+    for (let i = 1; i <= 15; i++) {
+        const selectedOption = form.querySelector(`input[name="q${i}"]:checked`);
+        if (selectedOption) {
+            score += parseInt(selectedOption.value);
+        }
+    }
+    const totalScore = document.getElementById("total-score");
+    const classification = getClassification(score);
+    totalScore.innerHTML = `<p>Puntuación Total: ${score}</p><p>Clasificación del autismo: ${classification}</p>`;
+    sendDataToGoogleSheets(score, classification);
+}
+
+        function getClassification(score) {
+            let classification = "";
+            if (score >= 36) {
+                classification = "Autismo Severo";
+            } else if (score >= 30 && score < 36) {
+                classification = "Autismo Moderado";
+            } else if (score >= 15 && score < 30) {
+                classification = "Ausencia del Síndrome Autista";
+            }
+            return classification;
+        }
+
+        function sendDataToGoogleSheets(score, classification) {
+            const formData = new FormData();
+            formData.append("interviewee-name", document.getElementById("interviewee-name").value);
+            formData.append("child-name", document.getElementById("child-name").value);
+            formData.append("child-age", document.getElementById("child-age").value);
+            formData.append("score", score);
+            formData.append("classification", classification);
+
+            fetch("https://script.google.com/macros/s/AKfycbzz2SiKgApjDx_cK02hr39TORYDLHAC5o_5ysx8zLZpWe_va-w4hJhQnDUs3Nm2Nmk_pQ/exec", {
+                method: "POST",
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error(error));
+        }
+    </script>
+</body>
+
+</html>
