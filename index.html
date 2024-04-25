@@ -45,6 +45,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>Test CARS</h1>
@@ -339,11 +340,8 @@
                     <input type="radio" name="q15" value="4">
                     <label>Habla inapropiada o estereotipada.</label>
                 </li>
-            </ul> 
-        </form>
-        <input type="button" value="Calcular puntuación total" onclick="calculateScore()">
-<div id="total-score" class="total-score"></div>
-
+            </ul>
+            <input type="submit" value="Calcular puntuación total">
         </form>
         <div id="total-score" class="total-score"></div>
         <p>Los datos se han guardado correctamente en Google Sheets. Puedes acceder a la hoja de cálculo <a
@@ -352,25 +350,27 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-    document.querySelector('input[type=button]').addEventListener('click', calculateScore);
-});
+        document.getElementById("cars-form").addEventListener("submit", function (event) {
+            event.preventDefault();
+            calculateScore();
+        });
+
 
 
         function calculateScore() {
-    let score = 0;
-    const form = document.getElementById("cars-form");
-    for (let i = 1; i <= 15; i++) {
-        const selectedOption = form.querySelector(`input[name="q${i}"]:checked`);
-        if (selectedOption) {
-            score += parseInt(selectedOption.value);
+            let score = 0;
+            const form = document.getElementById("cars-form");
+            for (let i = 1; i <= 15; i++) {
+                const selectedOption = form.querySelector(`input[name="q${i}"]:checked`);
+                if (selectedOption) {
+                    score += parseInt(selectedOption.value);
+                }
+            }
+            const totalScore = document.getElementById("total-score");
+            const classification = getClassification(score);
+            totalScore.innerHTML = `<p>Puntuación Total: ${score}</p><p>Clasificación del autismo: ${classification}</p>`;
+            sendDataToGoogleSheets(score, classification);
         }
-    }
-    const totalScore = document.getElementById("total-score");
-    const classification = getClassification(score);
-    totalScore.innerHTML = `<p>Puntuación Total: ${score}</p><p>Clasificación del autismo: ${classification}</p>`;
-    sendDataToGoogleSheets(score, classification);
-}
 
         function getClassification(score) {
             let classification = "";
