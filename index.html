@@ -45,8 +45,27 @@
         }
     </style>
 </head>
-
 <body>
+<script>
+        // Función para rotar la pantalla horizontalmente
+        function rotateScreen() {
+            if (screen.orientation) {
+                if (screen.orientation.lock) {
+                    screen.orientation.lock('landscape');
+                } else if (screen.orientation.lock) {
+                    screen.orientation.lock('landscape');
+                }
+            } else if (screen.mozOrientation) {
+                screen.mozOrientation.lock('landscape');
+            } else if (screen.msOrientation) {
+                screen.msOrientation.lock('landscape');
+            }
+        }
+
+        // Rotar la pantalla automáticamente cuando la página carga
+        window.addEventListener('load', rotateScreen);
+    </script>
+    
     <div class="container">
         <h1>Test CARS</h1>
         <form id="cars-form">
