@@ -43,9 +43,56 @@
             font-weight: bold;
             margin-top: 20px;
         }
+        /* Estilos para la ventana emergente */
+        .welcome-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 20px;
+            border: 2px solid #333;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            max-width: 80%;
+            text-align: center;
+        }
+
+        .welcome-popup h2 {
+            margin-top: 0;
+        }
+
+        .welcome-popup p {
+            margin-bottom: 10px;
+        }
+
+        .close-btn {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .close-btn:hover {
+            background-color: #555;
+        }
     </style>
 </head>
 <body>
+    <div class="welcome-popup">
+        <h2>Bienvenido al Test CARS</h2>
+        <p>Por favor, gire su dispositivo móvil al modo horizontal para una mejor experiencia.</p>
+        <button class="close-btn" onclick="closeWelcomePopup()">Entendido</button>
+    </div>
+
+    <script>
+        // Función para cerrar la ventana emergente de bienvenida
+        function closeWelcomePopup() {
+            document.querySelector('.welcome-popup').style.display = 'none';
+        }
+    </script>
 <script>
         // Función para rotar la pantalla horizontalmente
         function rotateScreen() {
