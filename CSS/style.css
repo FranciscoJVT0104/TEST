@@ -1,66 +1,162 @@
-html,body {padding:0;margin:0;}
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
 .wrap {
-  font:12px Arial, san-serif;
+  font: 12px Arial, san-serif;
 }
+
 h1.likert-header {
-  padding-left:4.25%;
-  margin:20px 0 0;
+  padding-left: 4.25%;
+  margin: 20px 0 0;
 }
+
 form .statement {
-  display:block;
+  display: block;
   font-size: 14px;
   font-weight: bold;
   padding: 30px 0 0 4.25%;
-  margin-bottom:10px;
+  margin-bottom: 10px;
 }
-form .likert {
-  list-style:none;
-  width:100%;
-  margin:0;
-  padding:0 0 35px;
-  display:block;
-  border-bottom:2px solid #efefef;
+
+form .likert:last-of-type {
+  border-bottom: 0;
 }
-form .likert:last-of-type {border-bottom:0;}
+
 form .likert:before {
   content: '';
-  position:relative;
-  top:11px;
-  left:9.5%;
-  display:block;
-  background-color:#efefef;
-  height:4px;
-  width:60%;
+  position: relative;
+  top: 11px;
+  left: 9.5%;
+  display: block;
+  background-color: #efefef;
+  height: 4px;
+  width: 100%;
 }
-form .likert li {
-  display:inline-block;
-  width:19%;
-  text-align:center;
+
+ul {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+  unicode-bidi: isolate;
+}
+
+form .likert:last-of-type {
+  border-bottom: 0;
+}
+
+form .likert:before {
+  content: '';
+  position: relative;
+  top: 30px;
+  left: 4%;
+  display: block;
+  background-color: #efefef;
+  height: 4px;
+  width: 80%;
+}
+
+/* Modificar estilos para la lista desordenada (ul) */
+form ul.likert {
+  width: 100%;
+  /* Ancho completo */
+  margin: 0;
+  /* Eliminar el margen predeterminado */
+  padding: 0;
+  /* Eliminar el relleno predeterminado */
+}
+
+/* Modificar estilos para los elementos de lista (li) dentro de ul.likert */
+form ul.likert li {
+  display: inline-block;
+  width: 12%;
+  text-align: center;
   vertical-align: top;
 }
-form .likert li input[type=radio] {
-    display:block;
-    position:relative;
-    top:0;
-    left:50%;
-    margin-left:-6px;
-  }
-  form .likert li label {
-    text-align:center;
-    width:100%;
-  }
+
+/* Modificar estilos para los inputs de radio dentro de ul.likert */
+form ul.likert li input[type=radio] {
+  display: block;
+  position: relative;
+  top: 0;
+  left: 50%;
+  margin-left: -6px;
+}
+
+/* Modificar estilos para las etiquetas dentro de ul.likert */
+form ul.likert li label {
+  text-align: center;
+  width: 100%;
+}
+
 form .buttons {
-  margin:30px 0;
-  padding:0 4.25%;
-  text-align:right
-} 
+  margin-left: -10px;
+  text-align: center
+}
+
 form .buttons button {
   padding: 5px 10px;
   background-color: #67ab49;
   border: 0;
   border-radius: 3px;
 }
-form .buttons .clear {background-color: #e9e9e9;}
-form .buttons .submit {background-color: #67ab49;} 
-form .buttons .clear:hover {background-color: #ccc;}
-form .buttons .submit:hover {background-color: #14892c;} 
+
+form .buttons .clear {
+  background-color: #e9e9e9;
+}
+
+form .buttons .submit {
+  background-color: #67ab49;
+}
+
+form .buttons .clear:hover {
+  background-color: #ccc;
+}
+
+form .buttons .submit:hover {
+  background-color: #14892c;
+}
+
+/* Estilos para la ventana emergente */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px;
+  border: 2px solid #333;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  max-width: 80%;
+  text-align: center;
+  display: none; /* Ocultar la ventana emergente por defecto */
+}
+
+.popup h2 {
+  margin-top: 0;
+}
+
+.popup p {
+  margin-bottom: 10px;
+}
+
+.close-btn {
+  background-color: #ffae00;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.close-btn:hover {
+  background-color: #555;
+}
+/*************************/
