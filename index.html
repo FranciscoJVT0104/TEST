@@ -10,10 +10,7 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
-        }
-
-        h1 {
-            text-align: center;
+            padding-left: 20px;
         }
 
         .container {
@@ -21,79 +18,50 @@
             margin: 0 auto;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-
-        table,
-        th,
-        td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
+        h1 {
+            text-align: center;
         }
 
         .total-score {
             font-weight: bold;
             margin-top: 20px;
         }
-        /* Estilos para la ventana emergente */
-        .welcome-popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #fff;
-            padding: 20px;
-            border: 2px solid #333;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-            max-width: 80%;
-            text-align: center;
-        }
-
-        .welcome-popup h2 {
-            margin-top: 0;
-        }
-
-        .welcome-popup p {
-            margin-bottom: 10px;
-        }
-
-        .close-btn {
-            background-color: #333;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .close-btn:hover {
-            background-color: #555;
-        }
     </style>
 </head>
+
 <body>
-    <div class="welcome-popup">
+    <div class="welcome-popup popup">
         <h2>Bienvenido al Test CARS</h2>
         <p>Por favor, gire su dispositivo móvil al modo horizontal para una mejor experiencia.</p>
-        <button class="close-btn" onclick="closeWelcomePopup()">Entendido</button>
+        <button class="close-btn" onclick="closePopup('welcome-popup')">Entendido</button>
+    </div>
+
+    <div class="instructions-popup popup">
+        <h2>Instrucciones para el test</h2>
+        <p>1. El test consta de 15 áreas.</p>
+        <p>2. Debe marcar la opción que describa mejor el rendimiento de su hijo en esa área.</p>
+        <p>3. Si cree que la mejor descripción de su hijo está entre dos puntuaciones, marque la puntuación intermedia.</p>
+        <button class="close-btn" onclick="closePopup('instructions-popup')">Entendido</button>
     </div>
 
     <script>
-        // Función para cerrar la ventana emergente de bienvenida
-        function closeWelcomePopup() {
-            document.querySelector('.welcome-popup').style.display = 'none';
+        // Función para cerrar la ventana emergente
+        function closePopup(popupClassName) {
+            document.querySelector('.' + popupClassName).style.display = 'none';
+            if (popupClassName === 'welcome-popup') {
+                // Mostrar la ventana emergente de instrucciones después de la ventana de bienvenida
+                document.querySelector('.instructions-popup').style.display = 'block';
+            }
         }
     </script>
-<script>
+
+    <!-- Mostrar la ventana emergente de bienvenida al cargar la página -->
+    <script>
+        window.addEventListener('load', function () {
+            document.querySelector('.welcome-popup').style.display = 'block';
+        });
+    </script>
+    <script>
         // Función para rotar la pantalla horizontalmente
         function rotateScreen() {
             if (screen.orientation) {
@@ -112,11 +80,11 @@
         // Rotar la pantalla automáticamente cuando la página carga
         window.addEventListener('load', rotateScreen);
     </script>
-    
+
     <div class="container">
         <h1>Test CARS</h1>
         <form id="cars-form">
-            <label for="interviewee-name">Nombre del entrevistado:</label>
+            <label for="interviewee-name">Nombre del Apoderado:</label>
             <input type="text" id="interviewee-name" name="interviewee-name" required><br><br>
             <label for="child-name">Nombre del niño:</label>
             <input type="text" id="child-name" name="child-name" required><br><br>
@@ -125,18 +93,34 @@
             <label class="statement">1. Relación con las personas:</label>
             <ul class='likert'>
                 <li>
+                    <label>1</label>
                     <input type="radio" name="q1" value="1">
                     <label>Relaciones sociales típicas para la edad.</label>
                 </li>
                 <li>
+                    <label>1.5</label>
+                    <input type="radio" name="q1" value="1.5">
+                </li>
+                <li>
+                    <label>2</label>
                     <input type="radio" name="q1" value="2">
                     <label>Se relaciona de manera limitada, pero apropiada, con las personas.</label>
                 </li>
                 <li>
+                    <label>2.5</label>
+                    <input type="radio" name="q1" value="2.5">
+                </li>
+                <li>
+                    <label>3</label>
                     <input type="radio" name="q1" value="3">
                     <label>Presenta dificultades significativas en las relaciones sociales.</label>
                 </li>
                 <li>
+                    <label>3.5</label>
+                    <input type="radio" name="q1" value="3.5">
+                </li>
+                <li>
+                    <label>4</label>
                     <input type="radio" name="q1" value="4">
                     <label>Ausencia de relaciones sociales.</label>
                 </li>
@@ -144,18 +128,34 @@
             <label class="statement">2. Imitación</label>
             <ul class='likert'>
                 <li>
+                    <label>1</label>
                     <input type="radio" name="q2" value="1">
                     <label>Imita adecuadamente acciones.</label>
                 </li>
                 <li>
+                    <label>1.5</label>
+                    <input type="radio" name="q2" value="1.5">
+                </li>
+                <li>
+                    <label>2</label>
                     <input type="radio" name="q2" value="2">
                     <label>Imita con dificultad.</label>
                 </li>
                 <li>
+                    <label>2.5</label>
+                    <input type="radio" name="q2" value="2.5">
+                </li>
+                <li>
+                    <label>3</label>
                     <input type="radio" name="q2" value="3">
                     <label>Imita mínimamente o no imita.</label>
                 </li>
                 <li>
+                    <label>3.5</label>
+                    <input type="radio" name="q2" value="3.5">
+                </li>
+                <li>
+                    <label>4</label>
                     <input type="radio" name="q2" value="4">
                     <label>Ausencia de imitación.</label>
                 </li>
@@ -163,18 +163,34 @@
             <label class="statement">3. Respuesta emocional</label>
             <ul class='likert'>
                 <li>
+                    <label>1</label>
                     <input type="radio" name="q3" value="1">
                     <label>Respuesta emocional apropiada.</label>
                 </li>
                 <li>
+                    <label>1.5</label>
+                    <input type="radio" name="q3" value="1.5">
+                </li>
+                <li>
+                    <label>2</label>
                     <input type="radio" name="q3" value="2">
                     <label>Respuesta emocional limitada o inusual.</label>
                 </li>
                 <li>
+                    <label>2.5</label>
+                    <input type="radio" name="q3" value="2.5">
+                </li>
+                <li>
+                    <label>3</label>
                     <input type="radio" name="q3" value="3">
                     <label>Respuesta emocional inapropiada o inusual.</label>
                 </li>
                 <li>
+                    <label>3.5</label>
+                    <input type="radio" name="q3" value="3.5">
+                </li>
+                <li>
+                    <label>4</label>
                     <input type="radio" name="q3" value="4">
                     <label>Ausencia de respuesta emocional.</label>
                 </li>
@@ -182,18 +198,34 @@
             <label class="statement">4. Uso del cuerpo</label>
             <ul class='likert'>
                 <li>
+                    <label>1</label>
                     <input type="radio" name="q4" value="1">
                     <label>Uso típico del cuerpo y movimientos.</label>
                 </li>
                 <li>
+                    <label>1.5</label>
+                    <input type="radio" name="q4" value="1.5">
+                </li>
+                <li>
+                    <label>2</label>
                     <input type="radio" name="q4" value="2">
                     <label>Movimientos o posturas inusuales.</label>
                 </li>
                 <li>
+                    <label>2.5</label>
+                    <input type="radio" name="q4" value="2.5">
+                </li>
+                <li>
+                    <label>3</label>
                     <input type="radio" name="q4" value="3">
                     <label>Movimientos o posturas repetitivas.</label>
                 </li>
                 <li>
+                    <label>3.5</label>
+                    <input type="radio" name="q4" value="3.5">
+                </li>
+                <li>
+                    <label>4</label>
                     <input type="radio" name="q4" value="4">
                     <label>Movimientos estereotipados o ausencia de movimientos.</label>
                 </li>
@@ -201,18 +233,34 @@
             <label class="statement">5. Intereses</label>
             <ul class='likert'>
                 <li>
+                    <label>1</label>
                     <input type="radio" name="q5" value="1">
                     <label>Intereses típicos para la edad.</label>
                 </li>
                 <li>
+                    <label>1.5</label>
+                    <input type="radio" name="q5" value="1.5">
+                </li>
+                <li>
+                    <label>2</label>
                     <input type="radio" name="q5" value="2">
                     <label>Intereses limitados o inusuales.</label>
                 </li>
                 <li>
+                    <label>2.5</label>
+                    <input type="radio" name="q5" value="2.5">
+                </li>
+                <li>
+                    <label>3</label>
                     <input type="radio" name="q5" value="3">
                     <label>Intereses muy limitados o focalizados.</label>
                 </li>
                 <li>
+                    <label>3.5</label>
+                    <input type="radio" name="q5" value="3.5">
+                </li>
+                <li>
+                    <label>4</label>
                     <input type="radio" name="q5" value="4">
                     <label>Obsesión con un interés específico.</label>
                 </li>
@@ -220,18 +268,34 @@
             <label class="statement">6. Adaptación al cambio</label>
             <ul class='likert'>
                 <li>
+                    <label>1</label>
                     <input type="radio" name="q6" value="1">
                     <label>Capacidad adecuada para adaptarse a cambios.</label>
                 </li>
                 <li>
+                    <label>1.5</label>
+                    <input type="radio" name="q6" value="1.5">
+                </li>
+                <li>
+                    <label>2</label>
                     <input type="radio" name="q6" value="2">
                     <label>Dificultades moderadas para adaptarse a cambios.</label>
                 </li>
                 <li>
+                    <label>2.5</label>
+                    <input type="radio" name="q6" value="2.5">
+                </li>
+                <li>
+                    <label>3</label>
                     <input type="radio" name="q6" value="3">
                     <label>Dificultades significativas para adaptarse a cambios.</label>
                 </li>
                 <li>
+                    <label>3.5</label>
+                    <input type="radio" name="q6" value="3.5">
+                </li>
+                <li>
+                    <label>4</label>
                     <input type="radio" name="q6" value="4">
                     <label>Resistencia extrema a cambios.</label>
                 </li>
@@ -239,18 +303,34 @@
             <label class="statement">7. Respuesta auditiva</label>
             <ul class='likert'>
                 <li>
+                    <label>1</label>
                     <input type="radio" name="q7" value="1">
                     <label>Responde adecuadamente a estímulos auditivos.</label>
                 </li>
                 <li>
+                    <label>1.5</label>
+                    <input type="radio" name="q7" value="1.5">
+                </li>
+                <li>
+                    <label>2</label>
                     <input type="radio" name="q7" value="2">
                     <label>Hipersensibilidad o hiposensibilidad a estímulos auditivos.</label>
                 </li>
                 <li>
+                    <label>2.5</label>
+                    <input type="radio" name="q7" value="2.5">
+                </li>
+                <li>
+                    <label>3</label>
                     <input type="radio" name="q7" value="3">
                     <label>Respuestas inusuales o inapropiadas a estímulos auditivos.</label>
                 </li>
                 <li>
+                    <label>3.5</label>
+                    <input type="radio" name="q7" value="3.5">
+                </li>
+                <li>
+                    <label>4</label>
                     <input type="radio" name="q7" value="4">
                     <label>Ausencia de respuesta a estímulos auditivos.</label>
                 </li>
@@ -258,18 +338,34 @@
             <label class="statement">8. Uso de objetos</label>
             <ul class='likert'>
                 <li>
+                    <label>1</label>
                     <input type="radio" name="q8" value="1">
                     <label>Utiliza objetos de manera típica para la edad.</label>
                 </li>
                 <li>
+                    <label>1.5</label>
+                    <input type="radio" name="q8" value="1.5">
+                </li>
+                <li>
+                    <label>2</label>
                     <input type="radio" name="q8" value="2">
                     <label>Uso limitado o inusual de objetos.</label>
                 </li>
                 <li>
+                    <label>2.5</label>
+                    <input type="radio" name="q8" value="2.5">
+                </li>
+                <li>
+                    <label>3</label>
                     <input type="radio" name="q8" value="3">
                     <label>Utiliza objetos de manera repetitiva o inapropiada.</label>
                 </li>
                 <li>
+                    <label>3.5</label>
+                    <input type="radio" name="q8" value="3.5">
+                </li>
+                <li>
+                    <label>4</label>
                     <input type="radio" name="q8" value="4">
                     <label>No utiliza objetos de manera funcional.</label>
                 </li>
@@ -277,18 +373,34 @@
             <label class="statement">9. Comprensión verbal</label>
             <ul class='likert'>
                 <li>
+                    <label>1</label>
                     <input type="radio" name="q9" value="1">
                     <label>Comprende instrucciones verbales apropiadas para su nivel de desarrollo.</label>
                 </li>
                 <li>
+                    <label>1.5</label>
+                    <input type="radio" name="q9" value="1.5">
+                </li>
+                <li>
+                    <label>2</label>
                     <input type="radio" name="q9" value="2">
                     <label>Dificultades moderadas para comprender instrucciones verbales.</label>
                 </li>
                 <li>
+                    <label>2.5</label>
+                    <input type="radio" name="q9" value="2.5">
+                </li>
+                <li>
+                    <label>3</label>
                     <input type="radio" name="q9" value="3">
                     <label>Dificultades significativas para comprender instrucciones verbales.</label>
                 </li>
                 <li>
+                    <label>3.5</label>
+                    <input type="radio" name="q9" value="3.5">
+                </li>
+                <li>
+                    <label>4</label>
                     <input type="radio" name="q9" value="4">
                     <label>Ausencia de comprensión verbal.</label>
                 </li>
@@ -296,18 +408,34 @@
             <label class="statement">10. Respuesta visual</label>
             <ul class='likert'>
                 <li>
+                    <label>1</label>
                     <input type="radio" name="q10" value="1">
                     <label>Responde adecuadamente a estímulos visuales.</label>
                 </li>
                 <li>
+                    <label>1.5</label>
+                    <input type="radio" name="q10" value="1.5">
+                </li>
+                <li>
+                    <label>2</label>
                     <input type="radio" name="q10" value="2">
                     <label>Hipersensibilidad o hiposensibilidad a estímulos visuales.</label>
                 </li>
                 <li>
+                    <label>2.5</label>
+                    <input type="radio" name="q10" value="2.5">
+                </li>
+                <li>
+                    <label>3</label>
                     <input type="radio" name="q10" value="3">
                     <label>Respuestas inusuales o inapropiadas a estímulos visuales.</label>
                 </li>
                 <li>
+                    <label>3.5</label>
+                    <input type="radio" name="q10" value="3.5">
+                </li>
+                <li>
+                    <label>4</label>
                     <input type="radio" name="q10" value="4">
                     <label>Ausencia de respuesta a estímulos visuales.</label>
                 </li>
@@ -315,18 +443,34 @@
             <label class="statement">11. Nivel de actividad</label>
             <ul class='likert'>
                 <li>
+                    <label>1</label>
                     <input type="radio" name="q11" value="1">
                     <label>Nivel de actividad típico para la edad.</label>
                 </li>
                 <li>
+                    <label>1.5</label>
+                    <input type="radio" name="q11" value="1.5">
+                </li>
+                <li>
+                    <label>2</label>
                     <input type="radio" name="q11" value="2">
                     <label>Actividad excesiva o inusualmente baja.</label>
                 </li>
                 <li>
+                    <label>2.5</label>
+                    <input type="radio" name="q11" value="2.5">
+                </li>
+                <li>
+                    <label>3</label>
                     <input type="radio" name="q11" value="3">
                     <label>Hiperactividad o hiporreactividad.</label>
                 </li>
                 <li>
+                    <label>3.5</label>
+                    <input type="radio" name="q11" value="3.5">
+                </li>
+                <li>
+                    <label>4</label>
                     <input type="radio" name="q11" value="4">
                     <label>Ausencia de actividad motora.</label>
                 </li>
@@ -334,18 +478,34 @@
             <label class="statement">12. Nivel de ansiedad</label>
             <ul class='likert'>
                 <li>
+                    <label>1</label>
                     <input type="radio" name="q12" value="1">
                     <label>Ansiedad típica para la edad.</label>
                 </li>
                 <li>
+                    <label>1.5</label>
+                    <input type="radio" name="q12" value="1.5">
+                </li>
+                <li>
+                    <label>2</label>
                     <input type="radio" name="q12" value="2">
                     <label>Ansiedad moderada.</label>
                 </li>
                 <li>
+                    <label>2.5</label>
+                    <input type="radio" name="q12" value="2.5">
+                </li>
+                <li>
+                    <label>3</label>
                     <input type="radio" name="q12" value="3">
                     <label>Ansiedad significativa.</label>
                 </li>
                 <li>
+                    <label>3.5</label>
+                    <input type="radio" name="q12" value="3.5">
+                </li>
+                <li>
+                    <label>4</label>
                     <input type="radio" name="q12" value="4">
                     <label>Ansiedad extrema o ausencia de ansiedad.</label>
                 </li>
@@ -353,18 +513,34 @@
             <label class="statement">13. Respuesta a la gente</label>
             <ul class='likert'>
                 <li>
+                    <label>1</label>
                     <input type="radio" name="q13" value="1">
                     <label>Interacción social adecuada.</label>
                 </li>
                 <li>
+                    <label>1.5</label>
+                    <input type="radio" name="q13" value="1.5">
+                </li>
+                <li>
+                    <label>2</label>
                     <input type="radio" name="q13" value="2">
                     <label>Respuesta limitada o inusual a personas.</label>
                 </li>
                 <li>
+                    <label>2.5</label>
+                    <input type="radio" name="q13" value="2.5">
+                </li>
+                <li>
+                    <label>3</label>
                     <input type="radio" name="q13" value="3">
                     <label>Respuestas inusuales o inapropiadas a personas.</label>
                 </li>
                 <li>
+                    <label>3.5</label>
+                    <input type="radio" name="q13" value="3.5">
+                </li>
+                <li>
+                    <label>4</label>
                     <input type="radio" name="q13" value="4">
                     <label>Ausencia de respuesta a personas.</label>
                 </li>
@@ -372,18 +548,34 @@
             <label class="statement">14. Inteligencia general</label>
             <ul class='likert'>
                 <li>
+                    <label>1</label>
                     <input type="radio" name="q14" value="1">
                     <label>Funcionamiento intelectual típico para la edad.</label>
                 </li>
                 <li>
+                    <label>1.5</label>
+                    <input type="radio" name="q14" value="1.5">
+                </li>
+                <li>
+                    <label>2</label>
                     <input type="radio" name="q14" value="2">
                     <label>Rendimiento intelectual por debajo de lo esperado.</label>
                 </li>
                 <li>
+                    <label>2.5</label>
+                    <input type="radio" name="q14" value="2.5">
+                </li>
+                <li>
+                    <label>3</label>
                     <input type="radio" name="q14" value="3">
                     <label>Discapacidad intelectual leve o moderada.</label>
                 </li>
                 <li>
+                    <label>3.5</label>
+                    <input type="radio" name="q14" value="3.5">
+                </li>
+                <li>
+                    <label>4</label>
                     <input type="radio" name="q14" value="4">
                     <label>Discapacidad intelectual grave o profunda.</label>
                 </li>
@@ -391,18 +583,34 @@
             <label class="statement">15. Respuesta verbal</label>
             <ul class='likert'>
                 <li>
+                    <label>1</label>
                     <input type="radio" name="q15" value="1">
                     <label>Habla de manera típica para la edad.</label>
                 </li>
                 <li>
+                    <label>1.5</label>
+                    <input type="radio" name="q15" value="1.5">
+                </li>
+                <li>
+                    <label>2</label>
                     <input type="radio" name="q15" value="2">
                     <label>Habla limitada o inusual.</label>
                 </li>
                 <li>
+                    <label>2.5</label>
+                    <input type="radio" name="q15" value="2.5">
+                </li>
+                <li>
+                    <label>3</label>
                     <input type="radio" name="q15" value="3">
                     <label>Habla mínima o ausencia de habla.</label>
                 </li>
                 <li>
+                    <label>3.5</label>
+                    <input type="radio" name="q15" value="3.5">
+                </li>
+                <li>
+                    <label>4</label>
                     <input type="radio" name="q15" value="4">
                     <label>Habla inapropiada o estereotipada.</label>
                 </li>
@@ -420,16 +628,13 @@
             event.preventDefault();
             calculateScore();
         });
-
-
-
         function calculateScore() {
             let score = 0;
             const form = document.getElementById("cars-form");
             for (let i = 1; i <= 15; i++) {
                 const selectedOption = form.querySelector(`input[name="q${i}"]:checked`);
                 if (selectedOption) {
-                    score += parseInt(selectedOption.value);
+                    score += parseFloat(selectedOption.value);
                 }
             }
             const totalScore = document.getElementById("total-score");
