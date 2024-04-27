@@ -11,11 +11,16 @@
             font-family: Arial, sans-serif;
             margin: 20px;
             padding-left: 20px;
+            background-color: #ffea8b; /* Color de fondo del contenedor */
         }
 
         .container {
+            position: relative;
+            border: 5px solid #ff6600;
+            padding: 20px;
             max-width: 800px;
             margin: 0 auto;
+            background-color: #ffffff; /* Color de fondo del contenedor */
         }
 
         h1 {
@@ -40,7 +45,8 @@
         <h2>Instrucciones para el test</h2>
         <p>1. El test consta de 15 áreas.</p>
         <p>2. Debe marcar la opción que describa mejor el rendimiento de su hijo en esa área.</p>
-        <p>3. Si cree que la mejor descripción de su hijo está entre dos puntuaciones, marque la puntuación intermedia.</p>
+        <p>3. Si cree que la mejor descripción de su hijo está entre dos puntuaciones, marque la puntuación intermedia.
+        </p>
         <button class="close-btn" onclick="closePopup('instructions-popup')">Entendido</button>
     </div>
 
@@ -83,7 +89,7 @@
 
     <div class="container">
         <h1>Test CARS</h1>
-        <form id="cars-form">
+        <form id="cars-form" action="javascript:void(0);">
             <label for="interviewee-name">Nombre del Apoderado:</label>
             <input type="text" id="interviewee-name" name="interviewee-name" required><br><br>
             <label for="child-name">Nombre del niño:</label>
@@ -615,18 +621,17 @@
                     <label>Habla inapropiada o estereotipada.</label>
                 </li>
             </ul>
-            <input type="submit" value="Calcular puntuación total">
+            <input type="submit" class="submit-button" value="ENVIAR RESPUESTAS">
         </form>
         <div id="total-score" class="total-score"></div>
-        <p>Los datos se han guardado correctamente en Google Sheets. Puedes acceder a la hoja de cálculo <a
-                href="https://docs.google.com/spreadsheets/d/17fU3QNblwJ6ri8wA0j1wdbugd-w5SS0H_FJ8ZqQuj5E/edit#gid=0"
-                target="_blank">aquí</a>.</p>
     </div>
 
     <script>
         document.getElementById("cars-form").addEventListener("submit", function (event) {
             event.preventDefault();
-            calculateScore();
+            const { score, classification } = calculateScore();
+            sendDataToGoogleSheets(score, classification);
+            window.location.href = `felicitaciones.html?score=${score}&classification=${classification}`;
         });
         function calculateScore() {
             let score = 0;
@@ -638,9 +643,8 @@
                 }
             }
             const totalScore = document.getElementById("total-score");
-            const classification = getClassification(score);
-            totalScore.innerHTML = `<p>Puntuación Total: ${score}</p><p>Clasificación del autismo: ${classification}</p>`;
-            sendDataToGoogleSheets(score, classification);
+            let classification = getClassification(score);
+            return { score, classification };
         }
 
         function getClassification(score) {
