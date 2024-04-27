@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, #ffda45, #ff7300);
+}
+
+.note {
+    width: 300px;
+    height: 250px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.note h2 {
+    margin: 20px 0 0;
+    color: #000000;
+}
+
+.note p {
+    margin: 10px 0;
+    color: #000000;
+}
+
+.star-jump {
+    font-size: 40px;
+    animation: jump 0.5s infinite alternate;
+    /* Aplicamos la animación 'jump' */
+}
+
+@keyframes jump {
+    0% {
+        transform: translateY(0);
+        /* Comienza en su posición original */
+    }
+
+    50% {
+        transform: translateY(-10px);
+        /* Salta hacia arriba */
+    }
+
+    100% {
+        transform: translateY(0);
+        /* Regresa a su posición original */
+    }
+}
