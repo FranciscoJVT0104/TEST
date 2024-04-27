@@ -11,7 +11,8 @@
             font-family: Arial, sans-serif;
             margin: 20px;
             padding-left: 20px;
-            background-color: #ffea8b; /* Color de fondo del contenedor */
+            background-color: #ffea8b;
+            /* Color de fondo del contenedor */
         }
 
         .container {
@@ -20,7 +21,8 @@
             padding: 20px;
             max-width: 800px;
             margin: 0 auto;
-            background-color: #ffffff; /* Color de fondo del contenedor */
+            background-color: #ffffff;
+            /* Color de fondo del contenedor */
         }
 
         h1 {
@@ -87,15 +89,15 @@
         window.addEventListener('load', rotateScreen);
     </script>
 
-    <div class="container">
+    <div class="container" style="width: 80%; margin: 0 auto;">
         <h1>Test CARS</h1>
         <form id="cars-form" action="javascript:void(0);">
             <label for="interviewee-name">Nombre del Apoderado:</label>
-            <input type="text" id="interviewee-name" name="interviewee-name" required><br><br>
+            <input type="text" id="interviewee-name" name="interviewee-name" required style="padding: 10px; border: 2px solid orange; border-radius: 5px;"><br><br>
             <label for="child-name">Nombre del niño:</label>
-            <input type="text" id="child-name" name="child-name" required><br><br>
+            <input type="text" id="child-name" name="child-name" required style="padding: 10px; border: 2px solid orange; border-radius: 5px;" ><br><br>
             <label for="child-age">Edad del niño:</label>
-            <input type="text" id="child-age" name="child-age" required><br><br>
+            <input type="text" id="child-age" name="child-age" required style="padding: 10px; border: 2px solid orange; border-radius: 5px;" ><br><br>
             <label class="statement">1. Relación con las personas:</label>
             <ul class='likert'>
                 <li>
@@ -621,7 +623,9 @@
                     <label>Habla inapropiada o estereotipada.</label>
                 </li>
             </ul>
-            <input type="submit" class="submit-button" value="ENVIAR RESPUESTAS">
+            <button type="submit" class="submit-button"
+                style="background-color: orange; color: white; padding: 10px; border: none; border-radius: 5px; position: relative; top: 30px; margin-left: auto; margin-right: auto;">ENVIAR
+                RESPUESTAS</button>
         </form>
         <div id="total-score" class="total-score"></div>
     </div>
