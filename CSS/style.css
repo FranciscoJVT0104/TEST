@@ -8,6 +8,23 @@ body {
   font: 12px Arial, san-serif;
 }
 
+/* Estilos para los campos de entrada de texto */
+input[type="text"] {
+  padding: 10px;
+  border: 2px solid #ff8c00; /* Borde naranja */
+  border-radius: 5px;
+  background-color: #fff; /* Fondo blanco */
+  color: #333; /* Color de texto negro */
+  font-size: 16px;
+  margin-bottom: 10px; /* Espacio inferior */
+}
+
+/* Estilos adicionales para resaltar cuando enfocado */
+input[type="text"]:focus {
+  border-color: #ff6f00; /* Cambia el color del borde al enfocar */
+  box-shadow: 0 0 5px #ff6f00; /* Agrega una sombra al enfocar */
+}
+
 h1.likert-header {
   padding-left: 4.25%;
   margin: 20px 0 0;
@@ -62,6 +79,19 @@ form .likert:before {
   width: 80%;
 }
 
+.submit-button {
+  background-color: #ffae00;  /* Color naranja */
+  color: #fff; /* Texto en color blanco */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 30px; /* Espacio entre el test y el botón */
+  display: block; /* Hace que el botón ocupe todo el ancho disponible */
+  margin-left: auto; /* Centra horizontalmente */
+  margin-right: auto; /* Centra horizontalmente */
+}
+
 /* Modificar estilos para la lista desordenada (ul) */
 form ul.likert {
   width: 100%;
@@ -95,34 +125,6 @@ form ul.likert li label {
   width: 100%;
 }
 
-form .buttons {
-  margin-left: -10px;
-  text-align: center
-}
-
-form .buttons button {
-  padding: 5px 10px;
-  background-color: #67ab49;
-  border: 0;
-  border-radius: 3px;
-}
-
-form .buttons .clear {
-  background-color: #e9e9e9;
-}
-
-form .buttons .submit {
-  background-color: #67ab49;
-}
-
-form .buttons .clear:hover {
-  background-color: #ccc;
-}
-
-form .buttons .submit:hover {
-  background-color: #14892c;
-}
-
 /* Estilos para la ventana emergente */
 .popup {
   position: fixed;
@@ -136,7 +138,8 @@ form .buttons .submit:hover {
   z-index: 1000;
   max-width: 80%;
   text-align: center;
-  display: none; /* Ocultar la ventana emergente por defecto */
+  display: none;
+  /* Ocultar la ventana emergente por defecto */
 }
 
 .popup h2 {
@@ -159,4 +162,5 @@ form .buttons .submit:hover {
 .close-btn:hover {
   background-color: #555;
 }
+
 /*************************/
